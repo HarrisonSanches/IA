@@ -19,6 +19,7 @@ class Genetic_Algorithm:
             individuo = Individuo([],None)
             for j in range(chromosome_size):
                 individuo.chromosomes.append(random.randint(0,1))
+            # print(individuo.chromosomes)
             population.append(individuo)
 
         return population
@@ -26,6 +27,8 @@ class Genetic_Algorithm:
     def best_of_generation(population):
         pop_copy = population.copy()
         pop_copy.sort(key=lambda individuo: (individuo.aptidao))
+        # for i in range(len(pop_copy)):
+        #     print("elem", pop_copy[i].aptidao)
         return pop_copy[0]
 
     def select_parent(population):
@@ -61,11 +64,13 @@ class Genetic_Algorithm:
     
     def crossover(father1, father2):
         # revisar o tipo de crossover utlizado
-        point = randint(0,len(father1.chromosomes)-1)
+        # point = randint(0,len(father1.chromosomes)-1)
+        point = 8
         son1 = Individuo([],0)
         son2 = Individuo([],0)       
         
         son1.chromosomes = father1.chromosomes[:point] + father2.chromosomes[point:]
+        # print(son1.chromosomes)
         son1.aptidao = Individuo.calc_aptidao(son1)     
         
         son2.chromosomes = father2.chromosomes[point:] + father1.chromosomes[:point]
@@ -73,12 +78,12 @@ class Genetic_Algorithm:
 
         return son1, son2
     
-    def mutation(individuo):
-        pos_mutation = randint(0,len(individuo.chromosomes)-1)
-        if individuo.chromosomes[pos_mutation] == 1:
-            individuo.chromosomes[pos_mutation] = 0
-        else:
-            individuo.chromosomes[pos_mutation] = 1
+    def mutation(individuo):       
+        for i in range(len(individuo.chromosomes)):           
+            if individuo.chromosomes[i] == 1:
+                individuo.chromosomes[i] = 0
+            else:
+                individuo.chromosomes[i] = 1
         
         return individuo
  

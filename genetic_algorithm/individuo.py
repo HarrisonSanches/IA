@@ -17,15 +17,15 @@ class Individuo:
         #         value = value + pow(2, i)
         
         value = 0
-        n = 9
+        n = 15
         for i in range(16):
             value =  value + (2**n * elements[i])
-            n = n -1
+            n = n-1
                 
         if value < -20:
             value = -20
             
-        if value > 20:
+        elif value > 20:
             value = 20
         
         # print("valor em decimal desse chromossome é de: ", value)
