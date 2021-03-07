@@ -6,7 +6,7 @@ import random
 def main():
 
     # inicio = time.time()
-    ga = Genetic_Algorithm(20,10,0.6,0.01,16)
+    ga = Genetic_Algorithm(10,10,0.6,0.01,16)
     population = ga.create_initial_population(ga.population_size, ga.chromosome_size)
     
     for i in range(len(population)):

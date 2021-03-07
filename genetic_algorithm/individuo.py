@@ -21,15 +21,17 @@ class Individuo:
         for i in range(16):
             value =  value + (2**n * elements[i])
             n = n-1
-                
-        if value < -20:
-            value = -20
+        
+        x = -20 + ((40*value) / (2**16 - 1))
+        
+        if x < -20:
+            x = -20
             
-        elif value > 20:
-            value = 20
+        elif x > 20:
+            x = 20
         
         # print("valor em decimal desse chromossome é de: ", value)
-        aptidao = cos(value)*value + 2
+        aptidao = cos(x)*x + 2
         # print("a aptidão é de: ", aptidao)
         
         return aptidao

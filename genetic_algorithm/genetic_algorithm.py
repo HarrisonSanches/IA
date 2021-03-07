@@ -37,6 +37,8 @@ class Genetic_Algorithm:
             selected = []
             for i in range(4):
                 selected.append(randint(0,len(population)-1))
+            
+            print(selected)
                         
             if population[selected[0]].aptidao < population[selected[1]].aptidao:
                 pos_winner = selected[0]
@@ -73,7 +75,7 @@ class Genetic_Algorithm:
         # print(son1.chromosomes)
         son1.aptidao = Individuo.calc_aptidao(son1)     
         
-        son2.chromosomes = father2.chromosomes[point:] + father1.chromosomes[:point]
+        son2.chromosomes = father1.chromosomes[point:] + father2.chromosomes[:point]
         son2.aptidao = Individuo.calc_aptidao(son2)     
 
         return son1, son2
