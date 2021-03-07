@@ -1,5 +1,4 @@
 
-from auxiliary_functions import *
 from individuo import Individuo
 from random import randint
 import random
@@ -42,9 +41,9 @@ class Genetic_Algorithm:
                 pos_winner = selected[1]      
             
             if population[selected[2]].aptidao < population[selected[3]].aptidao:
-                pos_winner1 = selected[0]
+                pos_winner1 = selected[2]
             else:
-                pos_winner1 = selected[1]       
+                pos_winner1 = selected[3]       
             
             if pos_winner != pos_winner1:
                 igual = False
@@ -62,24 +61,24 @@ class Genetic_Algorithm:
     
     def crossover(father1, father2):
         # revisar o tipo de crossover utlizado
-        point = randint(0,len(father1)-1)
+        point = randint(0,len(father1.chromosomes)-1)
         son1 = Individuo([],0)
         son2 = Individuo([],0)       
         
-        son1.chromossome = father1.chromosome[:point] + father2.chromosome[point:]
+        son1.chromosomes = father1.chromosomes[:point] + father2.chromosomes[point:]
         son1.aptidao = Individuo.calc_aptidao(son1)     
         
-        son2.chromossome = father2.chromosome[point:] + father1.chromosome[:point]
+        son2.chromosomes = father2.chromosomes[point:] + father1.chromosomes[:point]
         son2.aptidao = Individuo.calc_aptidao(son2)     
 
-        return son1,son2
+        return son1, son2
     
     def mutation(individuo):
-        pos_mutation = randint(0,len(individuo.chromosome)-1)
-        if individuo.chromosome[pos_mutation] == 1:
-            individuo.chromosome[pos_mutation] = 0
+        pos_mutation = randint(0,len(individuo.chromosomes)-1)
+        if individuo.chromosomes[pos_mutation] == 1:
+            individuo.chromosomes[pos_mutation] = 0
         else:
-            individuo.chromosome[pos_mutation] = 1
+            individuo.chromosomes[pos_mutation] = 1
         
         return individuo
  

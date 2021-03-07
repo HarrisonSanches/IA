@@ -1,5 +1,4 @@
 from individuo import Individuo
-from auxiliary_functions import *
 def main():
     
     a = Individuo([1,0,0,1,0,0,0,1,0,1,0,1,0,0,0,1],20)
