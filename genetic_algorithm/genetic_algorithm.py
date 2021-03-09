@@ -2,11 +2,11 @@
 from individuo import Individuo
 from random import randint
 import random
-import time
 
 class Genetic_Algorithm:
 
-    def __init__(self, generations, population_size,crossover_rate, mutation_rate,chromosome_size):
+    def __init__(self, generations, population_size,crossover_rate, 
+                 mutation_rate,chromosome_size):
         self.generations = generations
         self.population_size = population_size
         self.crossover_rate = crossover_rate
@@ -19,7 +19,6 @@ class Genetic_Algorithm:
             individuo = Individuo([],None)
             for j in range(chromosome_size):
                 individuo.chromosomes.append(random.randint(0,1))
-            # print(individuo.chromosomes)
             population.append(individuo)
 
         return population
@@ -27,8 +26,7 @@ class Genetic_Algorithm:
     def best_of_generation(population):
         pop_copy = population.copy()
         pop_copy.sort(key=lambda individuo: (individuo.aptidao))
-        # for i in range(len(pop_copy)):
-        #     print("elem", pop_copy[i].aptidao)
+
         return pop_copy[0]
 
     def select_parent(population):
@@ -37,9 +35,7 @@ class Genetic_Algorithm:
             selected = []
             for i in range(4):
                 selected.append(randint(0,len(population)-1))
-            
-            print(selected)
-                        
+                                    
             if population[selected[0]].aptidao < population[selected[1]].aptidao:
                 pos_winner = selected[0]
             else:
@@ -65,14 +61,11 @@ class Genetic_Algorithm:
         return best
     
     def crossover(father1, father2):
-        # revisar o tipo de crossover utlizado
-        # point = randint(0,len(father1.chromosomes)-1)
         point = 8
         son1 = Individuo([],0)
         son2 = Individuo([],0)       
         
         son1.chromosomes = father1.chromosomes[:point] + father2.chromosomes[point:]
-        # print(son1.chromosomes)
         son1.aptidao = Individuo.calc_aptidao(son1)     
         
         son2.chromosomes = father1.chromosomes[point:] + father2.chromosomes[:point]
